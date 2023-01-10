@@ -1,6 +1,6 @@
 steps:
-    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: sh # or bash, /bin/sh, /bin/bash
+    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
     args:
         - '-c'
         - |
