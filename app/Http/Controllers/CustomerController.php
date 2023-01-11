@@ -72,4 +72,15 @@ class CustomerController extends Controller
                 DB::rollBack();
             }
     }
+
+    public function validateEmail(Request $request)
+    {
+        $count = User::where("email",$request['email'])->count();
+        
+        if($count > 0){
+            return response()->json(['success' => false]);
+        }else{
+            return response()->json(['success' => true]);
+        }
+    }
 }

@@ -115,4 +115,5 @@ Route::group(
 );
 
 Route::post('/register/customer', 'CustomerController@registerCustomer')->name('customer.register');
+Route::get('/validate/customer/email', 'CustomerController@validateEmail')->name('customer.validate.email');
     

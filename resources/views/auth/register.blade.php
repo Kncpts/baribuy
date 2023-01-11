@@ -757,61 +757,59 @@
                                     <tbody>
                                         <tr>
                                             <td>Full Name</td>
-                                            <td><strong>Full Name</strong></td>
-                                            <td><a href="javascript:void()" id="editFullName" >Edit ✎ </a></td>
+                                            <td><strong id="displayFullName"></strong></td>
+                                            <td><a type="button" href="javascript:void(0)" onclick="prevForm(2)" >Edit ✎ </a></td>
                                         </tr>
                                         <tr>
                                             <td>Account Type</td>
-                                            <td><strong>Checkbook IRA</strong></td>
-                                            <td><a href="">Edit ✎ </a></td>
+                                            <td><strong id="displayAccountType"></strong></td>
+                                            <td><a type="button" href="javascript:void(0)" onclick="prevForm(5)" >Edit ✎ </a></td>
                                         </tr>
                                         <tr>
                                             <td>Entity Name</td>
-                                            <td><strong>Entity Name</strong></td>
-                                            <td><a href="">Edit ✎ </a></td>
+                                            <td><strong id="displayEntityName"></strong></td>
+                                            <td><a type="button" href="javascript:void(0)" onclick="prevForm(5)">Edit ✎ </a></td>
                                         </tr>
                                         <tr>
                                             <td>Signatory Title</td>
-                                            <td><strong>Signatory Title</strong></td>
-                                            <td><a href="">Edit ✎ </a></td>
+                                            <td><strong id="displaySignatoryTitle"></strong></td>
+                                            <td><a type="button" href="javascript:void(0)" onclick="prevForm(5)">Edit ✎ </a></td>
                                         </tr>
                                         <tr>
                                             <td>Resident Type</td>
-                                            <td><strong> Domestic Account</strong></td>
-                                            <td><a href="">Edit ✎ </a></td>
+                                            <td><strong id="displayResidenceType"> Domestic Account</strong></td>
+                                            <td><a type="button" href="javascript:void(0)" onclick="prevForm(6)">Edit ✎ </a></td>
                                         </tr>
                                         <tr>
                                             <td>Accredited Status</td>
                                             <td><strong> Self Accredited</strong></td>
-                                            <td><a href="">Edit ✎ </a></td>
+                                            <td><a type="button" href="javascript:void(0)" >Edit ✎ </a></td>
                                         </tr>
                                         <tr>
                                             <td>Phone Number</td>
-                                            <td><strong>(453) 453-4544</strong></td>
-                                            <td><a href="">Edit ✎ </a></td>
+                                            <td><strong id="displayPhoneNumber"></strong></td>
+                                            <td><a type="button" href="javascript:void(0)" onclick="prevForm(7)">Edit ✎ </a></td>
                                         </tr>
                                         <tr>
-                                            <td>(453) 453-4544</td>
-                                            street 30
-                                            <td><strong>
-                                                    new ork, AK 45345</strong></td>
-                                            <td><a href="">Edit ✎ </a></td>
+                                            <td>Address</td>
+                                            
+                                            <td><strong id="displyAddress"></strong></td>
+                                            <td><a type="button" href="javascript:void(0)" onclick="prevForm(6)">Edit ✎ </a></td>
                                         </tr>
                                         <tr>
                                             <td>Date of Birth</td>
-                                            08/30/1980</strong></td>
-                                            <td><strong>
-                                            <td><a href="">Edit ✎ </a></td>
+                                             <td><strong id="didplayDob"></strong></td>
+                                            <td><a type="button" href="javascript:void(0)" onclick="prevForm(8)">Edit ✎ </a></td>
                                         </tr>
                                         <tr>
                                             <td>SSN</td>
-                                            <td><strong>XXX-XX-X453</strong></td>
-                                            <td><a href="">Edit ✎ </a></td>
+                                            <td><strong id="displaySsn">/strong></td>
+                                            <td><a type="button" href="javascript:void(0)" onclick="prevForm(9)">Edit ✎ </a></td>
                                         </tr>
                                         <tr>
                                             <td>EIN</td>
-                                            <td><strong>XX-XXXX534</strong></td>
-                                            <td><a href="">Edit ✎ </a></td>
+                                            <td><strong id="displayEin"></strong></td>
+                                            <td><a type="button" href="javascript:void(0)" onclick="prevForm(9)">Edit ✎ </a></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -916,7 +914,6 @@
             
             }else{
                 $("#email_error").addClass("d-none");
-
                 if(validateEmail($("#email").val().trim()) == false){
                     $("#email_error").html("Please provide valid email");
                     $("#email_error").removeClass("d-none");
@@ -925,6 +922,8 @@
                     $("#email_error").html("Please fill out this field");
                     $("#email_error").addClass("d-none");
                 }
+                checkEmailAvailibility();
+
             }
 
           
@@ -1034,14 +1033,14 @@
                 $("#street_address_error").addClass('d-none');
             }
             
-            // aparment suit   
-            if(!$("#apartment_suit").val().trim()){
-                $("#apartment_suit_error").removeClass('d-none');
-                backBtn[5].click();
+            // // aparment suit   
+            // if(!$("#apartment_suit").val().trim()){
+            //     $("#apartment_suit_error").removeClass('d-none');
+            //     backBtn[5].click();
              
-            }else{
-                $("#apartment_suit_error").addClass('d-none');
-            }
+            // }else{
+            //     $("#apartment_suit_error").addClass('d-none');
+            // }
             
             // state   
             if(!$("#state").val()){
@@ -1174,12 +1173,16 @@
         }else if(nextFormNo == 9){       
             progressBar.css('width', 81+ '%');
             progressVal.text(81+'%');
+
         }else if(nextFormNo == 10){       
             progressBar.css('width', 90+ '%');
             progressVal.text(90+'%');
+
         }else if(nextFormNo == 11){       
             progressBar.css('width', 100+ '%');
             progressVal.text(100+'%');
+            displayInformationPane();
+
         }
         
         $("#tab"+nextFormNo).addClass("active");
@@ -1187,53 +1190,114 @@
 
     function prevForm(prevFormNo){
 
-let panes = document.querySelectorAll(".tab-pane");
+        let panes = document.querySelectorAll(".tab-pane");
 
 
-panes.forEach((score) => {
-    score.classList.remove("active");
-});
+        panes.forEach((score) => {
+            score.classList.remove("active");
+        });
 
 
-var progressBar = $('#js-progress').find('.progress-bar');
-var progressVal = $('#js-progress').find('.progress-val');   
-if(prevFormNo == 1){
-    progressBar.css('width', 9+ '%');
-    progressVal.text(9+'%');
-}else if(prevFormNo == 2){
-    progressBar.css('width', 18+ '%');
-    progressVal.text(18+'%');
-}else if(prevFormNo == 3){           
-    progressBar.css('width', 27+ '%');
-    progressVal.text(27+'%');
-}else if(prevFormNo == 4){            
-    progressBar.css('width', 36+ '%');
-    progressVal.text(36+'%');
-}else if(prevFormNo == 5){           
-    progressBar.css('width', 45+ '%');
-    progressVal.text(45+'%');
-}else if(prevFormNo == 6){            
-    progressBar.css('width', 54+ '%');
-    progressVal.text(54+'%');
-}else if(prevFormNo == 7){       
-    progressBar.css('width', 63+ '%');
-    progressVal.text(63+'%');
-}else if(prevFormNo == 8){  
-    progressBar.css('width', 72+ '%');
-    progressVal.text(72+'%');
-}else if(prevFormNo == 9){       
-    progressBar.css('width', 81+ '%');
-    progressVal.text(81+'%');
-}else if(prevFormNo == 10){       
-    progressBar.css('width', 90+ '%');
-    progressVal.text(90+'%');
-}else if(prevFormNo == 11){       
-    progressBar.css('width', 100+ '%');
-    progressVal.text(100+'%');
-}
+        var progressBar = $('#js-progress').find('.progress-bar');
+        var progressVal = $('#js-progress').find('.progress-val');   
+        if(prevFormNo == 1){
+            progressBar.css('width', 9+ '%');
+            progressVal.text(9+'%');
+        }else if(prevFormNo == 2){
+            progressBar.css('width', 18+ '%');
+            progressVal.text(18+'%');
+        }else if(prevFormNo == 3){           
+            progressBar.css('width', 27+ '%');
+            progressVal.text(27+'%');
+        }else if(prevFormNo == 4){            
+            progressBar.css('width', 36+ '%');
+            progressVal.text(36+'%');
+        }else if(prevFormNo == 5){           
+            progressBar.css('width', 45+ '%');
+            progressVal.text(45+'%');
+        }else if(prevFormNo == 6){            
+            progressBar.css('width', 54+ '%');
+            progressVal.text(54+'%');
+        }else if(prevFormNo == 7){       
+            progressBar.css('width', 63+ '%');
+            progressVal.text(63+'%');
+        }else if(prevFormNo == 8){  
+            progressBar.css('width', 72+ '%');
+            progressVal.text(72+'%');
+        }else if(prevFormNo == 9){       
+            progressBar.css('width', 81+ '%');
+            progressVal.text(81+'%');
+        }else if(prevFormNo == 10){       
+            progressBar.css('width', 90+ '%');
+            progressVal.text(90+'%');
+        }else if(prevFormNo == 11){       
+            progressBar.css('width', 100+ '%');
+            progressVal.text(100+'%');
+        }
 
-$("#tab"+prevFormNo).addClass("active");
-}
+        $("#tab"+prevFormNo).addClass("active");
+        return true;
+    }
+
+    function displayInformationPane(){
+       
+        let entity_name = '---';
+        let signatory_title = '---';
+
+        $("#displayFullName").text($("#first_name").val()+' '+$("#last_name").val());
+        $("#displayEin").text($("#ein").val());
+        $("#displaySsn").text($("#ssn").val());
+        $("#didplayDob").text($("#dob").val());
+        $("#displyAddress").text($("#street_address").val());
+        $("#displayResidenceType").text($("#apartment_suit").val() ? $("#apartment_suit").val() : '---');
+        $("#displayPhoneNumber").text($("#phone_number").val());
+        $("#displayEntityName").text($("#entity_type:selected").text());
+        $("#displayAccountType").text( $('input[type="radio"][name="account_type"]:checked').next().text());
+
+        if($('input[type="radio"][name="account_type"]:checked').val() == 'entity_trust_or_corporation'){
+            entity_name = $("#corporate_entity_name").val();
+            signatory_title = $("#corporate_signatory_title").val();
+        }else if($('input[type="radio"][name="account_type"]:checked').val()  == 'retirement'){
+            entity_name = $("#retired_entity_name").val();
+            signatory_title = $("#retired_signatory_title").val();  
+        }
+        $("#displaySignatoryTitle").text(entity_name);
+        $("#displayEntityName").text(signatory_title);
+    }
+
+
+
+
+   function checkEmailAvailibility(){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        let email = $("#email").val().trim();
+        let backBtn = document.querySelectorAll(".btn-back");
+
+        if(email !=''){
+
+            $.ajax({
+                /* the route pointing to the post function */
+                url: "{{route('customer.validate.email')}}",
+                type: 'get',
+                /* send the csrf-token and the input to the controller */
+                data: {_token: CSRF_TOKEN, email},
+                dataType: 'JSON',
+                /* remind that 'data' is the response of the AjaxController */
+                success: function (response) { 
+                    
+                    if(response.success == true){
+                        $("#email_error").html("Please fill out this field");
+                        $("#email_error").addClass("d-none");
+                    }else{
+                        $("#email_error").removeClass("d-none");
+                        $("#email_error").html("Email already taken");
+                        backBtn[2].click();
+                      
+                    }
+                }
+            }); 
+        }
+    };
 </script>
 @endsection
 @endsection
