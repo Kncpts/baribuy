@@ -27,12 +27,18 @@ class CreateCustomersTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('postal_code');
-            $table->smallInteger('mailing_address')->default(0);
-            $table->string('country')->default(0);
+            $table->smallInteger('mailing_address')->nullable();
+            $table->string('country')->nullable();
             $table->string('phone_number');
             $table->date('dob');
             $table->string('ssn');
             $table->string('ein');
+            $table->smallInteger("net_worth_each_owner_one_million_check")->default(0);
+            $table->smallInteger("net_worth_joint_spouse_check")->default(0);
+            $table->smallInteger("total_asset_exceeding_check")->default(0);
+            $table->smallInteger("indiviual_income_check")->default(0);
+            $table->smallInteger("finary_member_check")->default(0);
+            $table->smallInteger("member_of_board_of_director_check")->default(0);
             $table->timestamps();
         });
     }

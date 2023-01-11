@@ -8,7 +8,7 @@
             <img src="{{ asset('frontend/assets/img/logo/bariLogo.png') }}" class="img-fluid" alt="Baribuy Logo">
         </div>
         <div class="">
-            <a class="link-to-logout mt-0 p-3 d-none btn btn-light" id="saveAndExit">Save &amp; Exit</a>
+            <a class="link-to-logout mt-0 p-3  btn btn-light" id="saveAndExit">Save &amp; Exit</a>
         </div>
     </div>
     <!-- <a class="btn btn-secondary" href="/">Go Back</a> -->
@@ -106,7 +106,7 @@
                     </div> -->
 
                 <div class="card-body">
-                    <form class="wizard-container" method="POST" action="{{route('admin.user.store')}}" id="js-wizard-form">
+                    <form class="wizard-container" method="POST" action="" id="js-wizard-form">
                         @csrf
                         <div class="progress" id="js-progress">
                             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
@@ -163,7 +163,7 @@
                                     </div>
                                 </div>
                                 <div class="btn-next-con">
-                                    <a class="btn-next d-block text-center" href="#">Let's Start</a>
+                                    <a class="btn-next d-block text-center" onClick="nextForm(2)" href="#">Let's Start</a>
                                 </div>
                                 <div class="mt-3">
                                     <a href="#" class="later-link">I'll do this later</a>
@@ -179,8 +179,8 @@
                                     </div>
                                 </div>
                                 <div class="btn-next-con">
-                                    <a class="btn-back" href="#">back</a>
-                                    <a class="btn-next forward" href="#">Next</a>
+                                    <a class="btn-back" href="#" onClick="prevForm(1)">back</a>
+                                    <a class="btn-next forward" href="#" onClick="nextForm(3)">Next</a>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab3" data-form-no="3">
@@ -202,13 +202,13 @@
                                 <div class="form-group">
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="">
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="" style="margin-top:0px !important;">
                                         <p class="d-none text-danger mt-2" id="password_error">Please fill out this field</p>
                                     </div>
                                 </div>
                                 <div class="btn-next-con">
-                                    <a class="btn-back" href="#">back</a>
-                                    <a class="btn-next forward" href="#">Next</a>
+                                    <a class="btn-back" href="#" onClick="prevForm(2)">back</a>
+                                    <a class="btn-next forward" href="#" onClick="nextForm(4)">Next</a>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab4" data-form-no="4">
@@ -228,7 +228,7 @@
                                 </div>
 
                                 <div class="form-check design-check">
-                                    <input class="form-check-input" type="radio" name="citizen_ship" value="us_citizen" id="non_us_citizen_or_resident">
+                                    <input class="form-check-input" type="radio" name="citizen_ship" value="non_us_citizen" id="non_us_citizen_or_resident">
                                     <label class="form-check-label" for="non_us_citizen_or_resident">
                                         Non U.S. Citizen or Resident
 
@@ -236,8 +236,8 @@
                                 </div>
                                 <p class="d-none text-danger mt-2" id="citizen_ship_error">Please choose one option to continue</p>
                                 <div class="btn-next-con">
-                                    <a class="btn-back" href="#">back</a>
-                                    <a class="btn-next forward" href="#">Next</a>
+                                    <a class="btn-back" href="#" onClick="prevForm(3)">back</a>
+                                    <a class="btn-next forward" href="#" onClick="nextForm(5)">Next</a>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab5" data-form-no="5">
@@ -260,23 +260,23 @@
 
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Type of entity</label>
-                                        <select class="form-control" name="type_of_entity" id="type_of_entity">
+                                        <select class="form-control" name="entity_type" id="entity_type">
                                             <option value="type1">Type 1</option>
                                             <option value="type2">Type 2</option>
                                             <option value="type3">Type 3</option>
                                             <option value="type4">Type 4</option>
                                             <option value="type5">Type 5</option>
                                         </select>
-                                        <p class="text-danger mt-2 d-none" id="type_of_entity_error">Please fill out this field</p>
+                                        <p class="text-danger mt-2 d-none" id="entity_type_error">Please fill out this field</p>
                                     </div>
                                     <div class="form-group">
                                         <label for="ename">Entity Name</label>
-                                        <input type="text" class="form-control" name="corporate_entity_name" id="corporate_or_trust_entity_name" id="ename" placeholder="">
+                                        <input type="text" class="form-control" name="corporate_entity_name" id="corporate_entity_name" id="ename" placeholder="">
                                         <p class="text-danger mt-2 d-none" id="corporate_entity_name_error">Please fill out this field</p>
                                     </div>
                                     <div class="form-group">
                                         <label for="stitle">Signatory Title</label>
-                                        <input type="text" class="form-control" name="corporate_signatory_title" id="corporate_or_trust_signatory_title" placeholder="">
+                                        <input type="text" class="form-control" name="corporate_signatory_title" id="corporate_signatory_title" placeholder="">
                                         <p class="text-danger mt-2 d-none" id="corporate_signatory_title_error">Please fill out this field</p>
                                     </div>
                                 </div>
@@ -302,8 +302,8 @@
                                 <p class="d-none text-danger mt-2" id="account_type_error">Please fill out this field</p>
 
                                 <div class="btn-next-con">
-                                    <a class="btn-back" href="#">back</a>
-                                    <a class="btn-next forward" href="#">Next</a>
+                                    <a class="btn-back" href="#" onClick="prevForm(4)">back</a>
+                                    <a class="btn-next forward" href="#" onClick="nextForm(6)">Next</a>
                                 </div>
                             </div>
                             <!--  -->
@@ -395,8 +395,8 @@
                                     </label>
                                 </div>
                                 <div class="btn-next-con">
-                                    <a class="btn-back" href="#">back</a>
-                                    <a class="btn-next forward" href="#">Next</a>
+                                    <a class="btn-back" href="#" onClick="prevForm(5)">back</a>
+                                    <a class="btn-next forward" href="#" onClick="nextForm(7)">Next</a>
                                 </div>
                             </div>
 
@@ -660,8 +660,8 @@
                                 </div>
 
                                 <div class="btn-next-con">
-                                    <a class="btn-back" href="#">back</a>
-                                    <a class="btn-next forward" href="#">Next</a>
+                                    <a class="btn-back" href="#" onClick="prevForm(6)">back</a>
+                                    <a class="btn-next forward" href="#" onClick="nextForm(8)">Next</a>
                                 </div>
                             </div>
 
@@ -674,8 +674,8 @@
                                 </div>
 
                                 <div class="btn-next-con">
-                                    <a class="btn-back" href="#">back</a>
-                                    <a class="btn-next forward" href="#">Next</a>
+                                    <a class="btn-back" href="#" onClick="prevForm(7)">back</a>
+                                    <a class="btn-next forward" href="#" onClick="nextForm(9)">Next</a>
                                 </div>
                             </div>
 
@@ -692,8 +692,8 @@
                                 </div>
 
                                 <div class="btn-next-con">
-                                    <a class="btn-back" href="#">back</a>
-                                    <a class="btn-next forward" href="#">Next</a>
+                                    <a class="btn-back" href="#" onClick="prevForm(8)">back</a>
+                                    <a class="btn-next forward" href="#" onClick="nextForm(10)">Next</a>
                                 </div>
                             </div>
 
@@ -702,51 +702,51 @@
                                 <p>You can still invest even if none of these apply to you. <a href="#">Learn More</a></p>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" name="" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
+                                    <input class="form-check-input" name="net_worth_each_owner_one_million_check" type="checkbox"  id="net_worth_each_owner_one_million_check" checked>
+                                    <label class="form-check-label" for="net_worth_each_owner_one_million_check">
                                         The <strong> net worth of each owner</strong> is $1M+ (excluding primary residence)
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
+                                    <input class="form-check-input" type="checkbox" name="net_worth_joint_spouse_check" id="net_worth_joint_spouse_check" checked>
+                                    <label class="form-check-label" for="net_worth_joint_spouse_check">
                                         For each owner, their joint income including their spouse was $300k+ for each of the past two years
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
+                                    <input class="form-check-input" type="checkbox"  name="total_asset_exceeding_check" id="total_asset_exceeding_check" checked>
+                                    <label class="form-check-label" for="total_asset_exceeding_check">
                                         The entity has total assets exceeding $5,000,000
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
+                                    <input class="form-check-input" type="checkbox"  name="indiviual_income_check" id="indiviual_income_check" checked>
+                                    <label class="form-check-label" for="indiviual_income_check">
                                         The <strong>individual income of each owner was $200k+</strong> for each of the past two years
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
+                                    <input class="form-check-input" type="checkbox"   name="finary_member_check" id="finary_member_check" checked>
+                                    <label class="form-check-label" for="finary_member_check">
                                         Are you or anyone in your household associated with a FINRA Member?
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
+                                    <input class="form-check-input" type="checkbox"  id="member_of_board_of_director_check" name="member_of_board_of_director_check" checked>
+                                    <label class="form-check-label" for="member_of_board_of_director_check">
                                         Are you or anyone in your household or immediate family a 10% shareholder, officer, or member of the board of directors of a publicly traded company?
                                     </label>
                                 </div>
 
 
                                 <div class="btn-next-con">
-                                    <a class="btn-back" href="#">back</a>
-                                    <a class="btn-next forward" href="#">Next</a>
+                                    <a class="btn-back" href="#" onClick="prevForm(9)">back</a>
+                                    <a class="btn-next forward" href="#" onClick="nextForm(11)">Next</a>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab11">
@@ -817,8 +817,8 @@
                                 </table>
                                 <!-- -->
                                 <div class="btn-next-con">
-                                    <a class="btn-back" href="#">back</a>
-                                    <a class="btn-last" id="submitClientCreationForm" href="#">Submit</a>
+                                    <a class="btn-back" href="#" onClick="prevForm(10)">back</a>
+                                    <a class="btn-last" id="submitClientCreationForm"  href="#">Submit</a>
                                 </div>
                             </div>
                         </div>
@@ -832,21 +832,55 @@
 <script>
 
     $(".btn-last").on("click",function(){
-    let form = $("#js-wizard-form").serializeArray();
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-   
-        $.ajax({
-            /* the route pointing to the post function */
-            url: "{{route('customer.register')}}",
-            type: 'POST',
-            /* send the csrf-token and the input to the controller */
-            data: {_token: CSRF_TOKEN, form},
-            dataType: 'JSON',
-            /* remind that 'data' is the response of the AjaxController */
-            success: function (response) { 
-                console.log(response);
-            }
-        }); 
+     
+        // let form = $("#js-wizard-form").serializeArray();
+        let fields = {
+            "first_name" : $("#first_name").val(),
+            "last_name" : $("#last_name").val(),
+            "email" : $("#email").val(),
+            "password" : $("#password").val(),
+            "citizen_ship" : $('input[type="radio"][name="citizen_ship"]:checked').val(),
+            "account_type" : $('input[type="radio"][name="account_type"]:checked').val(),
+            "entity_type" : $("#entity_type").val(),
+            "corporate_entity_name" : $("#corporate_entity_name").val(),
+            "corporate_signatory_title" : $("#corporate_signatory_title").val(),
+            "retired_entity_name" : $("#retired_entity_name").val(),
+            "retired_signatory_title" : $("#retired_signatory_title").val(),
+            "street_address" : $("#street_address").val(),
+            "apartment_suit" : $("#apartment_suit").val(),
+            "city" : $("#city").val(),
+            "state" : $("#state").val(),
+            "postal_code" : $("#postal_code").val(),
+            "mailing_address" : $('input[type="checkbox"][name="mailing_address"]').is(":checked"),
+            "country" : $("#country").val(),
+            "phone_number" : $("#phone_number").val(),
+            "dob" : $("#dob").val(),
+            "ssn" : $("#ssn").val(),
+            "ein" : $("#ein").val(),
+            "net_worth_each_owner_one_million_check" : $('input[type="checkbox"][name="net_worth_each_owner_one_million_check"]').is(":checked"),
+            "net_worth_joint_spouse_check" : $('input[type="checkbox"][name="net_worth_joint_spouse_check"]').is(":checked"),
+            "total_asset_exceeding_check" : $('input[type="checkbox"][name="total_asset_exceeding_check"]').is(":checked"),
+            "indiviual_income_check" : $('input[type="checkbox"][name="indiviual_income_check"]').is(":checked"),
+            "finary_member_check" : $('input[type="checkbox"][name="finary_member_check"]').is(":checked"),
+            "member_of_board_of_director_check" : $('input[type="checkbox"][name="member_of_board_of_director_check"]').is(":checked"),
+        };
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    
+            $.ajax({
+                /* the route pointing to the post function */
+                url: "{{route('customer.register')}}",
+                type: 'POST',
+                /* send the csrf-token and the input to the controller */
+                data: {_token: CSRF_TOKEN, fields},
+                dataType: 'JSON',
+                /* remind that 'data' is the response of the AjaxController */
+                success: function (response) { 
+                    console.log(response);
+                    if(response.success == true){
+                        window.location = response.redirectUrl;
+                    }
+                }
+            }); 
     
     });
 
@@ -862,12 +896,6 @@
             if(!$("#first_name").val().trim()){
                 $("#first_name_error").removeClass("d-none");
                 backBtn[1].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 18+ '%');
-                progressVal.text(18+'%');
-                
-    
             }else{
                 $("#first_name_error").addClass("d-none");
             }
@@ -876,12 +904,7 @@
             $("#saveAndExit").addClass("d-none");
             if(!$("#last_name").val().trim()){
                 $("#last_name_error").removeClass("d-none");
-                backBtn[2].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 27+ '%');
-                progressVal.text(27+'%');
-                
+                backBtn[2].click(); 
             }else{
                 $("#last_name_error").addClass("d-none");
             }
@@ -890,10 +913,6 @@
                 $("#email_error").removeClass("d-none");
                 $("#email_error").html("Please fill out this field");
                 backBtn[2].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 27+ '%');
-                progressVal.text(27+'%');
             
             }else{
                 $("#email_error").addClass("d-none");
@@ -902,10 +921,6 @@
                     $("#email_error").html("Please provide valid email");
                     $("#email_error").removeClass("d-none");
                     backBtn[2].click();
-                    var progressBar = $('#js-progress').find('.progress-bar');
-                    var progressVal = $('#js-progress').find('.progress-val');              
-                    progressBar.css('width', 27+ '%');
-                    progressVal.text(27+'%');
                 }else{
                     $("#email_error").html("Please fill out this field");
                     $("#email_error").addClass("d-none");
@@ -918,20 +933,11 @@
                 $("#password_error").text("Please fill out this field");
                 $("#password_error").removeClass("d-none");
                 backBtn[2].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 27+ '%');
-                progressVal.text(27+'%');
-               
             }else{
                 if($("#password").val().trim().length < 8){
                     $("#password_error").text("Password must contain 8 letters");
                     $("#password_error").removeClass("d-none");
                     backBtn[2].click();
-                    var progressBar = $('#js-progress').find('.progress-bar');
-                    var progressVal = $('#js-progress').find('.progress-val');              
-                    progressBar.css('width', 27+ '%');
-                    progressVal.text(27+'%');
                 }else{
                     $("#password_error").text("Please fill out this field");
                     $("#password_error").addClass("d-none");
@@ -945,10 +951,7 @@
             if(!$('input[type="radio"][name="citizen_ship"]:checked').val()){
                 $("#citizen_ship_error").removeClass("d-none");
                 backBtn[3].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 36+ '%');
-                progressVal.text(36+'%');
+             
                 
             }else{
                 $("#citizen_ship_error").addClass("d-none");
@@ -959,12 +962,8 @@
             
             if(!$('input[type="radio"][name="account_type"]:checked').val()){
                 $("#account_type_error").removeClass("d-none");
-                backBtn[5].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 45+ '%');
-                progressVal.text(45+'%');
-                
+                backBtn[4].click();
+               
             }else if($('input[type="radio"][name="account_type"]:checked').val() == 'indiviual_or_personal'){
                 $("#corporate_entity_name_error").addClass("d-none");
                 $("#corporate_signatory_title_error").addClass("d-none");
@@ -972,39 +971,27 @@
                 $("#retired_signatory_title_error").removeClass("d-none");
             }else if($('input[type="radio"][name="account_type"]:checked').val() == 'entity_trust_or_corporation'){
                
-                if(!$("#type_of_entity").val()){
-                    $("#type_of_entity_error").removeClass("d-none")
-                    backBtn[5].click();
-                    var progressBar = $('#js-progress').find('.progress-bar');
-                    var progressVal = $('#js-progress').find('.progress-val');              
-                    progressBar.css('width', 45+ '%');
-                    progressVal.text(45+'%');
+                if(!$("#entity_type").val()){
+                    $("#entity_type_error").removeClass("d-none")
+                    backBtn[4].click();
                 }else{
-                    $("#type_of_entity_error").addClass("d-none");
+                    $("#entity_type_error").addClass("d-none");
                     $("#retired_entity_name_error").removeClass("d-none");
                     $("#retired_signatory_title_error").removeClass("d-none");
                 }
 
-                if(!$("#corporate_entity_name").val()){
+                if(!$("#corporate_entity_name").val().trim()){
                     $("#corporate_entity_name_error").removeClass("d-none");
                     backBtn[4].click();
-                    var progressBar = $('#js-progress').find('.progress-bar');
-                    var progressVal = $('#js-progress').find('.progress-val');              
-                    progressBar.css('width', 45+ '%');
-                    progressVal.text(45+'%');
                 }else{
                     $("#corporate_entity_name_error").addClass("d-none");
                     $("#retired_entity_name_error").removeClass("d-none");
                     $("#retired_signatory_title_error").removeClass("d-none");
                 }
 
-                if(!$("#corporate_signatory_title").val()){
+                if(!$("#corporate_signatory_title").val().trim()){
                     $("#corporate_signatory_title_error").removeClass("d-none")
                     backBtn[4].click();
-                    var progressBar = $('#js-progress').find('.progress-bar');
-                    var progressVal = $('#js-progress').find('.progress-val');              
-                    progressBar.css('width', 45+ '%');
-                    progressVal.text(45+'%');
                 }else{
                     $("#corporate_signatory_title_error").addClass("d-none")
                     $("#retired_entity_name_error").removeClass("d-none");
@@ -1015,10 +1002,7 @@
                if(!$("#retired_entity_name").val()){
                    $("#retired_entity_name_error").removeClass("d-none")
                    backBtn[4].click();
-                   var progressBar = $('#js-progress').find('.progress-bar');
-                   var progressVal = $('#js-progress').find('.progress-val');              
-                   progressBar.css('width', 45+ '%');
-                   progressVal.text(45+'%');
+
                }else{
                    $("#retired_entity_name_error").addClass("d-none")
                    $("#corporate_entity_name_error").addClass("d-none");
@@ -1028,10 +1012,7 @@
                if(!$("#retired_signatory_title").val()){
                    $("#retired_signatory_title_error").removeClass("d-none")
                    backBtn[4].click();
-                   var progressBar = $('#js-progress').find('.progress-bar');
-                   var progressVal = $('#js-progress').find('.progress-val');              
-                   progressBar.css('width', 45+ '%');
-                   progressVal.text(45+'%');
+             
                }else{
                    $("#retired_signatory_title_error").addClass("d-none")
                    $("#corporate_entity_name_error").addClass("d-none");
@@ -1048,10 +1029,7 @@
             if(!$("#street_address").val().trim()){
                 $("#street_address_error").removeClass('d-none');
                 backBtn[5].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 54+ '%');
-                progressVal.text(54+'%');
+               
             }else{
                 $("#street_address_error").addClass('d-none');
             }
@@ -1060,10 +1038,7 @@
             if(!$("#apartment_suit").val().trim()){
                 $("#apartment_suit_error").removeClass('d-none');
                 backBtn[5].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 54+ '%');
-                progressVal.text(54+'%');
+             
             }else{
                 $("#apartment_suit_error").addClass('d-none');
             }
@@ -1072,10 +1047,7 @@
             if(!$("#state").val()){
                 $("#state_error").removeClass('d-none');
                 backBtn[5].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 54+ '%');
-                progressVal.text(54+'%');
+             
             }else{
                 $("#state_error").addClass('d-none');
             }
@@ -1084,10 +1056,7 @@
             if(!$("#postal_code").val().trim()){ 
                 $("#postal_code_error").removeClass('d-none');
                 backBtn[5].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 54+ '%');
-                progressVal.text(54+'%');
+         
             }else{
                 $("#postal_code_error").addClass('d-none');
             }
@@ -1096,10 +1065,7 @@
             if(!$("#city").val().trim()){ 
                 $("#city_error").removeClass('d-none');
                 backBtn[5].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 54+ '%');
-                progressVal.text(54+'%');
+                
             }else{
                 $("#city_error").addClass('d-none');
             }
@@ -1122,10 +1088,7 @@
             if(!$("#country").val()){ 
                 $("#country_error").removeClass('d-none');
                 backBtn[6].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 63+ '%');
-                progressVal.text(63+'%');
+
             }else{
                 $("#country_error").addClass('d-none');
             }
@@ -1135,11 +1098,8 @@
             // phone number
             if(!$("#dob").val()){ 
                 $("#dob_error").removeClass('d-none');
-                backBtn[6].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 72+ '%');
-                progressVal.text(63+'%');
+                backBtn[7].click();
+               
             }else{
                 $("#dob_error").addClass('d-none');
             }
@@ -1150,11 +1110,8 @@
             // EIN
             if(!$("#ein").val().trim()){ 
                 $("#ein_error").removeClass('d-none');
-                backBtn[6].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 81+ '%');
-                progressVal.text(81+'%');
+                backBtn[8].click();
+               
             }else{
                 $("#ein_error").addClass('d-none');
             }
@@ -1162,11 +1119,7 @@
             // SSN
             if(!$("#ssn").val().trim()){ 
                 $("#ssn_error").removeClass('d-none');
-                backBtn[6].click();
-                var progressBar = $('#js-progress').find('.progress-bar');
-                var progressVal = $('#js-progress').find('.progress-val');              
-                progressBar.css('width', 81+ '%');
-                progressVal.text(81+'%');
+                backBtn[8].click();
             }else{
                 $("#ssn_error").addClass('d-none');
             }
@@ -1183,6 +1136,104 @@
     $(document).on("click","#saveAndExit",function(){
         $("#submitClientCreationForm").click();
     });
+
+    function nextForm(nextFormNo){
+
+        let panes = document.querySelectorAll(".tab-pane");
+      
+
+        panes.forEach((score) => {
+            score.classList.remove("active");
+        });
+
+
+        var progressBar = $('#js-progress').find('.progress-bar');
+        var progressVal = $('#js-progress').find('.progress-val');   
+
+        if(nextFormNo == 2){
+            progressBar.css('width', 18+ '%');
+            progressVal.text(18+'%');
+        }else if(nextFormNo == 3){           
+            progressBar.css('width', 27+ '%');
+            progressVal.text(27+'%');
+        }else if(nextFormNo == 4){            
+            progressBar.css('width', 36+ '%');
+            progressVal.text(36+'%');
+        }else if(nextFormNo == 5){           
+            progressBar.css('width', 45+ '%');
+            progressVal.text(45+'%');
+        }else if(nextFormNo == 6){            
+            progressBar.css('width', 54+ '%');
+            progressVal.text(54+'%');
+        }else if(nextFormNo == 7){       
+            progressBar.css('width', 63+ '%');
+            progressVal.text(63+'%');
+        }else if(nextFormNo == 8){  
+            progressBar.css('width', 72+ '%');
+            progressVal.text(72+'%');
+        }else if(nextFormNo == 9){       
+            progressBar.css('width', 81+ '%');
+            progressVal.text(81+'%');
+        }else if(nextFormNo == 10){       
+            progressBar.css('width', 90+ '%');
+            progressVal.text(90+'%');
+        }else if(nextFormNo == 11){       
+            progressBar.css('width', 100+ '%');
+            progressVal.text(100+'%');
+        }
+        
+        $("#tab"+nextFormNo).addClass("active");
+    }
+
+    function prevForm(prevFormNo){
+
+let panes = document.querySelectorAll(".tab-pane");
+
+
+panes.forEach((score) => {
+    score.classList.remove("active");
+});
+
+
+var progressBar = $('#js-progress').find('.progress-bar');
+var progressVal = $('#js-progress').find('.progress-val');   
+if(prevFormNo == 1){
+    progressBar.css('width', 9+ '%');
+    progressVal.text(9+'%');
+}else if(prevFormNo == 2){
+    progressBar.css('width', 18+ '%');
+    progressVal.text(18+'%');
+}else if(prevFormNo == 3){           
+    progressBar.css('width', 27+ '%');
+    progressVal.text(27+'%');
+}else if(prevFormNo == 4){            
+    progressBar.css('width', 36+ '%');
+    progressVal.text(36+'%');
+}else if(prevFormNo == 5){           
+    progressBar.css('width', 45+ '%');
+    progressVal.text(45+'%');
+}else if(prevFormNo == 6){            
+    progressBar.css('width', 54+ '%');
+    progressVal.text(54+'%');
+}else if(prevFormNo == 7){       
+    progressBar.css('width', 63+ '%');
+    progressVal.text(63+'%');
+}else if(prevFormNo == 8){  
+    progressBar.css('width', 72+ '%');
+    progressVal.text(72+'%');
+}else if(prevFormNo == 9){       
+    progressBar.css('width', 81+ '%');
+    progressVal.text(81+'%');
+}else if(prevFormNo == 10){       
+    progressBar.css('width', 90+ '%');
+    progressVal.text(90+'%');
+}else if(prevFormNo == 11){       
+    progressBar.css('width', 100+ '%');
+    progressVal.text(100+'%');
+}
+
+$("#tab"+prevFormNo).addClass("active");
+}
 </script>
 @endsection
 @endsection
